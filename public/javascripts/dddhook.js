@@ -14,6 +14,14 @@
   var svgWidth  = ddd.width  = 1350;
   var svgHeight = ddd.height = 500;
 
+  var svgAttrs = [
+    '_id', 'group',
+    'x', 'y', 'x1', 'x2', 'y1', 'y2',
+    'r', 'd', 'rx', 'ry',
+    'cx', 'cy',
+    'width', 'height', 'fill', 'stroke', 'opacity', 'fill-opacity', 'stroke-opacity'
+  ];
+
   var kv = ddd.kv = function(o, key, value) {
     o[key] = value;
     return o;
@@ -21,8 +29,10 @@
 
   // Move an attr to the dest obj, and remove from src
   var move = function(dest, key, src) {
-    dest[key] = src[key];
-    delete src[key];
+    if (src[key]) {
+      dest[key] = src[key];
+      delete src[key];
+    }
     return dest;
   };
 
@@ -110,7 +120,6 @@
         item.d3._id = key;
         return item;
       });
-      console.log('------------', self.datamap, dataset);
 
       // Each data item in self.dataset is in the 'original' format -- as fetched
       // from the server.  However, the D3-ified attributes are on item.d3.
@@ -129,9 +138,12 @@
       // DATA JOIN
       var records = d3.select(selector).selectAll(inserter).data(dataset, function(d) { return resolve(d, '_id'); });
 
-      if (dataAttrs._id) {
-        delete dataAttrs._id;
-      }
+      // Remove attrs that are not real DOM attributes
+      _.each(['_id', 'group'], function(attr) {
+        if (dataAttrs[attr]) {
+          delete dataAttrs[attr];
+        }
+      });
 
       // ENTER - Create new elements as needed
       // New records
@@ -194,24 +206,24 @@
         // Dispatch all the items that we just downloaded
         _.each(response.items, function(item) {
           //if (!item.group) { return; }
-          console.log(item);
+          var d3 = {};
 
-          item.group = item.group || 'anon';
+          _.each(svgAttrs, function(key) {
+            move(d3, key, item);
+          });
 
-          var group = item.group;
+          console.log(d3, item);
+
+          d3.group = d3.group || 'anon';
+
+          var group = d3.group;
           if (!groups[group]) {
             groups[group] = new D3Dataset({
               selector      : 'svg.drawing',
               shape         : 'circle',
-              classed       : 'classy'
+              classed       : group
             });
           }
-
-          var d3 = {};
-
-          _.each(['cx', 'cy', 'r', 'fill', '_id'], function(key) {
-            move(d3, key, item);
-          });
 
           groups[group].add(resolve(d3, '_id'), d3, item);
         });

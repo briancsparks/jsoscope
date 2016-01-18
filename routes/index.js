@@ -30,8 +30,8 @@ router.get('/data', function(req, res, next) {
 });
 
 var diag = function() {
-  console.log(heldData.length, !!heldReqRes);
-  setTimeout(diag, 5000);
+  console.log('number of held-data items: ' + heldData.length + ' holding a request: ' + !!heldReqRes);
+  setTimeout(diag, 500000);
 };
 diag();
 
