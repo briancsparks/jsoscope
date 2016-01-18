@@ -1,10 +1,10 @@
 {
   "apps"  : [{
     "name"                    : "jsoscope",
-    "script"                  : "app.js",
+    "script"                  : "bin/www",
     "args"                    : [],
     "watch"                   : true,
-    "ignore_watch"            : ["views"],
+    "ignore_watch"            : ["views", "public"],
 
     "env"                     : {
       "NODE_ENV"              : "development"

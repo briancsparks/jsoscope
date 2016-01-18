@@ -27,8 +27,11 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
+    "sendevent": "^1.0.4",
     "serve-favicon": "~2.3.0",
-    "underscore": "^1.8.3"
+    "uglify": "^0.1.5",
+    "underscore": "^1.8.3",
+    "watch": "^0.17.1"
   },
   "homepage": "https://github.com/briancsparks/jsoscope#README.md"
 }
