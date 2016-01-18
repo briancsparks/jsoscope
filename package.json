@@ -4,7 +4,8 @@
   "description": "Shoot JSON into a browser-based viewer.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,15 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/briancsparks/jsoscope/issues"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
   },
   "homepage": "https://github.com/briancsparks/jsoscope#README.md"
 }
