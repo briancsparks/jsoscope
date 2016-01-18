@@ -1,0 +1,23 @@
+{
+  "name": "jsoscope",
+  "version": "0.8.0",
+  "description": "Shoot JSON into a browser-based viewer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briancsparks/jsoscope.git"
+  },
+  "keywords": [
+    "json",
+    "oscope"
+  ],
+  "author": "Brian C Sparks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/briancsparks/jsoscope/issues"
+  },
+  "homepage": "https://github.com/briancsparks/jsoscope#README.md"
+}
